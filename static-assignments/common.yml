@@ -24,3 +24,13 @@
       apt:
         name: wireshark
         state: latest
+
+    - name: ensure nginx is at the latest
+      apt:
+        name: nginx
+        state: latest  
+
+    - name: create directory if it doesn't exist
+      ansible.builtin.file:
+        path: /home/ubuntu/knowledge-gap
+        state: directory   
