@@ -1,6 +1,6 @@
 ---
 - name: update web, nfs and db servers
-  hosts: webservers, nfs, db
+  hosts: uat-webservers
   remote_user: ec2-user
   become: yes
   become_user: root
@@ -10,27 +10,27 @@
         name: wireshark
         state: latest
 
-- name: update LB server
-  hosts: lb
-  remote_user: ubuntu
-  become: yes
-  become_user: root
-  tasks:
-    - name: Update apt repo
-      apt: 
-        update_cache: yes
+#- name: update LB server
+#  hosts: lb
+#  remote_user: ubuntu
+#  become: yes
+#  become_user: root
+#  tasks:
+#    - name: Update apt repo
+#      apt: 
+#        update_cache: yes
 
-    - name: ensure wireshark is at the latest version
-      apt:
-        name: wireshark
-        state: latest
+#    - name: ensure wireshark is at the latest version
+#      apt:
+#        name: wireshark
+#       state: latest
 
-    - name: ensure nginx is at the latest
-      apt:
-        name: nginx
-        state: latest  
-
-    - name: create directory if it doesn't exist
-      ansible.builtin.file:
-        path: /home/ubuntu/knowledge-gap
-        state: directory   
+#    - name: ensure nginx is at the latest
+#      apt:
+#        name: nginx
+#        state: latest  
+#
+#    - name: create directory if it doesn't exist
+#      ansible.builtin.file:
+#        path: /home/ubuntu/knowledge-gap
+#        state: directory   
